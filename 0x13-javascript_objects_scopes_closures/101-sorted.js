@@ -1,17 +1,11 @@
 #!/usr/bin/node
-/* Computes a dictionary of user ids by occurences */
-const dict = require('./101-data').dict;
-
-const obj = {};
-
-for (const v of Object.values(dict)) {
-  const list = [];
-  obj[v] = list;
-
-  for (const [ke, va] of Object.entries(dict)) {
-    if (v === va) {
-      list.push(ke);
-    }
+const dict = require('./101-data.js').dict;
+let newDict = {};
+for (let key in dict) {
+  if (newDict[dict[key]] === undefined) {
+    newDict[dict[key]] = [key];
+  } else {
+    newDict[dict[key]].push(key);
   }
 }
-console.log(obj);
+console.log(newDict);
